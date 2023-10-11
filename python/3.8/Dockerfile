@@ -10,6 +10,10 @@ RUN         apt-get update \
             && rm -rf /var/lib/apt/lists/* \
             && locale-gen en_US.UTF-8
 
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
 ENV         LC_ALL=en_US.UTF-8
 ENV         LANG=en_US.UTF-8
 ENV         LANGUAGE=en_US.UTF-8
