@@ -14,11 +14,13 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN wget https://github.com/kiki7000/discord.py-components/archive/refs/tags/2.1.2.zip -O discord.py-components-2.1.2.zip
+#RUN wget https://github.com/kiki7000/discord.py-components/archive/refs/tags/2.1.2.zip -O discord.py-components-2.1.2.zip
 
-RUN unzip discord.py-components-2.1.2.zip -d ..
+#RUN unzip discord.py-components-2.1.2.zip -d ..
 
-RUN pip install discord.py-components-2.1.2
+#RUN         cd discord.py-components-2.1.2 \
+#            && python 
+RUN pip install discord-component
 
 ENV         LC_ALL=en_US.UTF-8
 ENV         LANG=en_US.UTF-8
