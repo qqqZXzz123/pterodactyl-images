@@ -5,7 +5,7 @@ LABEL       org.opencontainers.image.source="https://github.com/Software-Noob/pt
 LABEL       org.opencontainers.image.licenses="MIT"
 
 RUN         apt-get update \
-            && apt-get -y install --no-install-recommends git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps locales \
+            && apt-get -y install --no-install-recommends unzip git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps locales \
             && apt-get clean \
             && rm -rf /var/lib/apt/lists/* \
             && locale-gen en_US.UTF-8
@@ -13,6 +13,12 @@ RUN         apt-get update \
 COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
+
+RUN wget https://github.com/kiki7000/discord.py-components/archive/refs/tags/2.1.2.zip -O discord.py-components-2.1.2.zip
+
+RUN unzip discord.py-components-2.1.2.zip -d ..
+
+RUN pip install discord.py-components-2.1.2
 
 ENV         LC_ALL=en_US.UTF-8
 ENV         LANG=en_US.UTF-8
