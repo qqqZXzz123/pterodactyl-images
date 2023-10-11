@@ -10,7 +10,7 @@ RUN         apt-get update \
             && rm -rf /var/lib/apt/lists/* \
             && locale-gen en_US.UTF-8
 
-COPY requirements.txt .
+COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
