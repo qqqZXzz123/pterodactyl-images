@@ -29,9 +29,9 @@ jobs:
          # - 2.7
          # - 3.6
          # - 3.7
-          - 3.8
+         # - 3.8
          # - 3.9
-         # - "3.10" # !WARNING: Tag must be enclosed in quotes or it will be interpreted as 3.1 instead of 3.10
+          - "3.10" # !WARNING: Tag must be enclosed in quotes or it will be interpreted as 3.1 instead of 3.10
          # - 3.11
          # - 3.12-rc
     steps:
