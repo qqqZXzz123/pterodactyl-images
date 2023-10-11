@@ -12,15 +12,16 @@ RUN         apt-get update \
 
 COPY ./requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN wget https://files.pythonhosted.org/packages/e0/14/e6018769445c3d648e33ddc7f6857579cc6025fa00a685a21bd5fb06ca44/discord_component-2.1.2.tar.gz \
+&& python3 -m pip install ./discord_component-2.1.2.tar.gz
 
-RUN wget https://files.pythonhosted.org/packages/e0/14/e6018769445c3d648e33ddc7f6857579cc6025fa00a685a21bd5fb06ca44/discord_component-2.1.2.tar.gz
+RUN pip install -r requirements.txt
 
 #RUN unzip discord.py-components-2.1.2.zip -d ..
 
 #RUN         cd discord.py-components-2.1.2 \
 #            && python 
-RUN pip install discord_component-2.1.2.tar.gz
+#RUN pip install discord_component-2.1.2.tar.gz
 
 ENV         LC_ALL=en_US.UTF-8
 ENV         LANG=en_US.UTF-8
