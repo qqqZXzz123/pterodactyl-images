@@ -12,7 +12,7 @@ RUN         apt-get update \
 
 COPY ./requirements3_11.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements3_11.txt
 
 ENV         LC_ALL=en_US.UTF-8
 ENV         LANG=en_US.UTF-8
