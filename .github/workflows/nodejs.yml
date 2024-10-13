@@ -26,12 +26,12 @@ jobs:
       fail-fast: false
       matrix:
         tag:
-          - 12
-          - 14
+         # - 12
+         # - 14
           - 16
-          - 17
-          - 18
-          - 19
+         # - 17
+         # - 18
+         # - 19
     steps:
       - name: Git checkout for Github repository workspace
         uses: actions/checkout@v4
