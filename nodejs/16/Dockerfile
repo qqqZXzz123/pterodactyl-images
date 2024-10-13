@@ -1,24 +1,20 @@
-FROM        node:16-bullseye-slim
+FROM        --platform=$TARGETOS/$TARGETARCH node:16-bookworm-slim
 
-LABEL       author="Softwarenoob" maintainer="admin@softwarenoob.com"
-LABEL       org.opencontainers.image.source="https://github.com/Software-Noob/pterodactyl-images"
-LABEL       org.opencontainers.image.licenses="MIT"
+LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
-RUN         apt-get update \
-            && apt-get -y install --no-install-recommends curl ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential locales proxychains4 \
-            && npm -g install npm@latest \
-            && apt-get clean \
-            && rm -rf /var/lib/apt/lists/* \
-            && useradd -m -d /home/container container \
-            && locale-gen en_US.UTF-8
+RUN         apt update \
+            && apt -y install curl ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential locales git sqlite3 libsqlite3-dev python3-dev zip tar libtool iputils-ping libnss3 tini proxychains* \
+            && useradd -m -d /home/container container
 
-ENV         LC_ALL=en_US.UTF-8
-ENV         LANG=en_US.UTF-8
-ENV         LANGUAGE=en_US.UTF-8
+RUN         npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-COPY        ./entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/bash", "/entrypoint.sh" ]
+STOPSIGNAL SIGINT
+
+COPY        --chown=container:container ./../entrypoint.sh /entrypoint.sh
+RUN         chmod +x /entrypoint.sh
+ENTRYPOINT    ["/usr/bin/tini", "-g", "--"]
+CMD         ["/entrypoint.sh"]
