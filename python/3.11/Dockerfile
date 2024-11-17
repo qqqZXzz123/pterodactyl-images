@@ -15,6 +15,7 @@ COPY ./requirements3_11.txt .
 RUN pip install -r requirements3_11.txt \
 && pip install uvicorn \
 && pip install fastapi \
+&& pip install schedule \
 && pip install pydantic
 
 ENV         LC_ALL=en_US.UTF-8
