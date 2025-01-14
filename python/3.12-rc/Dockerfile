@@ -16,6 +16,7 @@ ENV         LANGUAGE=en_US.UTF-8
 
 RUN wget https://golang.org/dl/go1.15.1.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.15.1.linux-amd64.tar.gz
+ENV PATH="/usr/local/go/bin:${PATH}"
 RUN rm go1.15.1.linux-amd64.tar.gz
 
 ENV NODE_VERSION=14.9.0
