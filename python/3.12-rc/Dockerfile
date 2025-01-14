@@ -19,7 +19,7 @@ RUN tar -C /usr/local -xzf go1.15.1.linux-amd64.tar.gz
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN rm go1.15.1.linux-amd64.tar.gz
 
-ENV NODE_VERSION=v14.13.1
+ENV NODE_VERSION=v14.16
 ENV NVM_DIR /usr/local/nvm
 RUN mkdir -p $NVM_DIR
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
