@@ -5,7 +5,7 @@ LABEL       org.opencontainers.image.source="https://github.com/Software-Noob/pt
 LABEL       org.opencontainers.image.licenses="MIT"
 
 RUN         apt-get update \
-            && apt-get -y install --no-install-recommends git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps locales proxychains4 \
+            && apt-get -y install --no-install-recommends git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps locales proxychains4 wget\
             && apt-get clean \
             && rm -rf /var/lib/apt/lists/* \
             && locale-gen en_US.UTF-8
