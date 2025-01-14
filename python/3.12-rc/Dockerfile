@@ -19,13 +19,15 @@ RUN tar -C /usr/local -xzf go1.15.1.linux-amd64.tar.gz
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN rm go1.15.1.linux-amd64.tar.gz
 
-ENV NODE_VERSION=14.9.0
+ENV NODE_VERSION=v14.9.0
+ENV NVM_DIR /usr/local/nvm
+RUN mkdir -p $NVM_DIR
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-ENV NVM_DIR=/root/.nvm
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+
+RUN /bin/bash -c "source $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm use --delete-prefix $NODE_VERSION"
+
+ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 RUN node --version
 RUN npm --version
 
